@@ -68,6 +68,26 @@ install.
 
 Code from the live session is available on the
 [Github](https://github.com/AMMnet/ammnet-hackathon/tree/main/04_mapping-r-part2).
+
+Data for this tutorial has been uploaded onto
+[Figshare](https://figshare.com/articles/figure/AMMnet_Hackathon_-_rasters/28839191)
+and we recommend you run the following code to download the data for
+this tutorial
+
+```{r download-data, eval = FALSE}
+#Only run this if you don't have these packages
+#install.packages(c("httr", "fs"))
+library(httr)
+library(fs)
+
+# Replace with the actual download URL
+download_url <- "https://figshare.com/ndownloader/articles/28839191/versions/1"
+#make this the destination where you want to keep the data in your local computer
+output_file <- "data/rasters.zip"
+
+GET(download_url, write_disk(output_file, overwrite = TRUE))
+unzip("rasters.zip", exdir = "data") #exdir is the folder which you want to unzip in
+```
 :::
 
 ## Overview
@@ -227,7 +247,7 @@ some pre-downloaded population rasters from
 ```{r load, message = FALSE}
 
 #lets load a population raster in R
-population <- rast("data/rasters/tza_ppp_2020_constrained.tif")
+population <- rast("data/rasters/tza_pop_2022_constrained.tif")
 population
 ```
 
